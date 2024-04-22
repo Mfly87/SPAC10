@@ -15,9 +15,6 @@ class AbsSQLObj(AbsDataObj):
     def get_values() -> list[type]:
         pass
 
-    def get_types_two(_class_type: 'AbsSQLObj') -> list[type]:
-        return _class_type.get_types()
-
     @staticmethod    
     def get_build_headers(_class_type: 'AbsSQLObj') -> list[any]:
         '''
