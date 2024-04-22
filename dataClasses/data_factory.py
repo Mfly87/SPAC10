@@ -2,7 +2,9 @@ from inspect import getmembers, isclass, isabstract
 from .abstract import AbsSQLObj
 from . import data_types
 
-class SQLDataFactory():
+from designPatterns import Singleton
+
+class SQLDataFactory(Singleton):
     _data_obj_dict: dict[str,str] = {}
     _error_log = []
 
@@ -81,7 +83,7 @@ class SQLDataFactory():
             if not issubclass(_type, AbsSQLObj):
                 continue
 
-            _sub_index_len = len(AbsSQLObj.get_types_two(_type))
+            _sub_index_len = len(_type.get_types())
             
             _main_list, _sub_list = self._split_list([*args], _index, _sub_index_len)
             _sub_list.insert(0, _type.__name__)
@@ -107,10 +109,9 @@ class SQLDataFactory():
 
         _return_class: AbsSQLObj = self._data_obj_dict.get(_class_name, None)
         if _return_class is None:
-            self._error_log.append("%s not a sub class of AbsSQLObj" % (_class_name))
             return None
         
-        _build_types = AbsSQLObj.get_types_two(_return_class)
+        _build_types = _return_class.get_types()
         args = self._enroll_args(_build_types, *args)
         _class_args = args[1:]
         
@@ -118,12 +119,6 @@ class SQLDataFactory():
         _len_required = len(_build_types)
         
         if _len_required != _len_recieved:
-            _dict = {
-                "error": "recieved %i argumnents, expected %i" % (_len_recieved, _len_required),
-                "args": args,
-                #"expected": AbsSQLObj.get_headers(),
-                }
-            self._error_log.append(_dict)
             return None
 
         _return_obj = _return_class(*_class_args)

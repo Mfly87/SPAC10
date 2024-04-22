@@ -32,7 +32,7 @@ class SQLDataUser(AbsSQLObj):
         return self._name
     @name.setter
     def name(self, value) -> None:
-        if is_sub_class(value, AbsSQLObj):
+        if is_sub_class(value, SQLDataName):
             self._name = value
 
     @property
@@ -40,7 +40,7 @@ class SQLDataUser(AbsSQLObj):
         return self._address
     @address.setter
     def address(self, value) -> None:
-        if is_sub_class(value, AbsSQLObj):
+        if is_sub_class(value, SQLDataAddress):
             self._address = value
 
     @property
@@ -80,7 +80,7 @@ class SQLDataUser(AbsSQLObj):
         ]
     
     def to_string(self):
-        return "%s %s %s %s"%(
+        return "%s (%s) (%s) %s"%(
             self.id,
             self.name,
             self.address,
