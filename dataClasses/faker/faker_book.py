@@ -20,5 +20,5 @@ class FakerBook(AbsFaker):
         
 
         _factory:SQLDataFactory = SQLDataFactory()
-        _args = ["SQLDataBook", _tite, _author, _year, _isbn, _quantity]
+        _args = ["SQLDataBook", _tite, _author, _year, _isbn, _quantity, _quantity]
         return  _factory.create_data_obj(*_args)

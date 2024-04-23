@@ -11,14 +11,16 @@ class SQLDataBook(AbsSQLObj):
     _year = None
     _isbn = None
     _quantity = None
+    _quantity_available = None
 
 
-    def __init__(self, title:str, author:SQLDataName, year:int, isbn:str, quantity:str) -> None:
+    def __init__(self, title:str, author:SQLDataName, year:int, isbn:str, quantity:str, quantity_available:int) -> None:
         self.title = title
         self.author = author
         self.year = year
         self.isbn = isbn
         self.quantity = quantity
+        self.quantity_available = quantity_available
 
     @property
     def title(self) -> str:
@@ -64,6 +66,15 @@ class SQLDataBook(AbsSQLObj):
         if value is not None:
             self._quantity = value
 
+    @property
+    def quantity_available(self) -> int:
+        return self._quantity_available
+    @quantity_available.setter
+    def quantity_available(self, value) -> None:
+        value = int_is_zero_or_greater(value)
+        if value is not None:
+            self._quantity_available = value
+
 
     @staticmethod
     def get_headers():
@@ -73,6 +84,7 @@ class SQLDataBook(AbsSQLObj):
             "year",
             "ISBN",
             "quantity",
+            "quantity_available",
         ]
     
     @staticmethod
@@ -82,6 +94,7 @@ class SQLDataBook(AbsSQLObj):
             SQLDataName,
             int,
             str,
+            int,
             int
         ]
     
@@ -92,6 +105,7 @@ class SQLDataBook(AbsSQLObj):
             self.year,
             self.isbn,
             self.quantity,
+            self.quantity_available,
         ]
     
     def to_string(self):
@@ -101,4 +115,5 @@ class SQLDataBook(AbsSQLObj):
             self.year,
             self.isbn,
             self.quantity,
+            self.quantity_available,
         )
