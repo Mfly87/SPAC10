@@ -2,11 +2,15 @@
 
 {% block head %}
 <title>Table</title>
-<link rel="stylesheet" href="/static/styles.css" />
 {% endblock %}
 
 {% block body %}
-<h1 class="headline">SPAC Library</h1>
+<div class="headline">
+    <h1 class="headline">SPAC Library</h1>
+    <br>
+    <h3>{{result_count}} results matched the query</h3>
+    <h3>{{query_condition}}</h5>
+</div>
 
 <table class="table">
     <tr class="table__header">

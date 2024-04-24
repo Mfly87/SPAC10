@@ -1,0 +1,17 @@
+{
+    "mysql_credentials": {
+        "host": "localhost", 
+        "user": "root", 
+        "password": "Kom12345", 
+        "port": 3306
+    },
+
+    "mysql_database_name": "spac10",
+
+    "faker_book_amount": 1000,
+
+    "flask_app":{
+        "host": "127.0.0.1",
+        "port": "5000"
+    }
+}
