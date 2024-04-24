@@ -1,4 +1,5 @@
 from dataClasses.faker import FakerBook
+from dataClasses.data_types import SQLDataBook
 from sql import DataObjQueries
 
 import json
@@ -20,4 +21,5 @@ def setup_table_books():
     if not _books:
         return
     
+    DataObjQueries.create_table(SQLDataBook)
     DataObjQueries.insert_many(_books)
