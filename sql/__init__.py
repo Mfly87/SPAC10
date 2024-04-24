@@ -1,4 +1,4 @@
 from .sqlConnection import ServerCredentials, ServerConnection, DatabaseConnection
-from .dataQueries import DataQueries
+from .dataObjQueries import DataObjQueries
 
 from .queryGenerators import QueryConditions, TableQueries, ItemQueries

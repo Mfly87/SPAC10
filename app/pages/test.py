@@ -1,8 +1,6 @@
 from flask import render_template, request, jsonify
 from app import app
 
-from database import MySQLHandler
-from dataClasses.products import CerealObj, ProductFactory
 '''
 @app.route("/a", methods = ["GET","POST"])
 def AP():

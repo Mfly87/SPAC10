@@ -13,7 +13,7 @@ class FakerBook(AbsFaker):
     def create_random_book(self) -> list[SQLDataBook]:
         _author = self._fake_name.create_random_name()[0]
         
-        _tite = self.generate_business_speak()
+        _tite = self.generate_business_speak().capitalize()
         _year = self.generate_int(1980,2020)
         _isbn = self.generate_ISBN13()
         _quantity = self.generate_int(1,10)
