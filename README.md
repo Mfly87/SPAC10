@@ -10,6 +10,7 @@ Due to the assigment being shorter than expected a lot of the data classes have 
 An attempt has been made to make the generated data a bit more interesting to browse through, which also adds some complexity to how it is being generated.
 
 NOTE: Everything is run locally.
+NOTE: The secret key for the app has been very crudely implemented
 
 ## Installation
 
