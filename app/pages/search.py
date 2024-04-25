@@ -1,4 +1,4 @@
-from flask import render_template, request, jsonify, redirect, url_for
+from flask import render_template, request, jsonify, redirect, url_for, session
 from app import app
 
 from sql import QueryConditions
@@ -6,6 +6,8 @@ from dataClasses import SQLDataBook, AbsSQLObj
 
 @app.route("/search", methods = ["GET","POST"])
 def Search():
+    session["prev_search"] = ""
+
     if request.method == "POST":
         _query_column = request.form.get("query_column", None)
         _query_operator = request.form.get("query_operator", None)

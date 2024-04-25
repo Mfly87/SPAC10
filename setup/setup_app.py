@@ -14,4 +14,5 @@ def setup_app():
         _host = _dict.get("host", _host)
         _port = _dict.get("port", _port)
 
+    app.secret_key = "e5f4848e9bf5854b176502c82a730f84"
     app.run(debug=True, host=_host, port=_port)

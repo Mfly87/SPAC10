@@ -10,6 +10,7 @@
 <center>
     <div class="content">
         <form method="POST">
+            <div  name="query_condition"  id="query_condition"></div>
             <select name="query_column" id="query_column">
                 {% for option in options %}
                 <option value={{option[0]}} SELECTED>{{option[1]}}</option>"
