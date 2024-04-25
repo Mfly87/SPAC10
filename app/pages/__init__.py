@@ -1,2 +1,1 @@
-from . import home
-from . import test
+from . import error, home, search_result, search, search_sql

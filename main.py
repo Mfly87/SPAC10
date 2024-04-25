@@ -1,37 +1,18 @@
-from dataClasses import AbsSQLObj, SQLDataUser, SQLDataFactory, SQLDataBook
-from dataClasses.faker import FakerBook, FakerUser
-from sql import ServerCredentials, ServerConnection, DatabaseConnection, DataQueries
+from sql import ServerCredentials
+from setup import setup_table_books, setup_app, setup_my_sql_connection
 
-print("\n\n\n")
+import scipy.stats as stats
 
-_book_gen = FakerBook()
-_books = []
-for _ in range(10):
-    for _book in _book_gen.create_random_book():
-        _books.append(_book)
+if __name__ == "__main__":
 
-_credentials = ServerCredentials(
-    "localhost",
-    "root",
-    "Kom12345",
-    3306
-)
+    print("\n\n\n")
+    '''
+    for x in range(100):
+        x = 0.01 * x
+        cdf = stats.binom.cdf
+        print("%i, %.4f" % ( x, cdf(x, 1, .5)  - cdf(x-.01, 1, .5) ))
+    '''
 
-_database_name = "spac10"
-
-_server:ServerConnection = ServerConnection()
-_server_con = _server.connect_to_server(_credentials)
-
-_db_con:DatabaseConnection = DatabaseConnection()
-_db_con.connect_to_database(_server_con, _database_name)
-
-_dict = {
-    "users": dict(zip(AbsSQLObj.get_build_headers(SQLDataUser), AbsSQLObj.get_build_types(SQLDataUser))),
-    "books": dict(zip(AbsSQLObj.get_build_headers(SQLDataBook), AbsSQLObj.get_build_types(SQLDataBook))),
-}
-
-_dq = DataQueries()
-for _type in [SQLDataUser, SQLDataBook]:
-    _dq.create_table(_type)
-
-_dq.insert_many(_books)
+    setup_my_sql_connection()
+    setup_table_books()
+    setup_app()

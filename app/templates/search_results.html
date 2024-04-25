@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Table</title>
+{% endblock %}
+
+{% block body %}
+<div class="headline">
+    <h1 class="headline">SPAC Library</h1>
+    <br>
+    <h3>{{result_count}} results matched the query</h3>
+    <h3>{{query_condition}}</h5>
+</div>
+
+<center>
+    <div class="content">
+        <form method="POST">
+
+            <select name="query_joiner" id="query_joiner">
+                <option value="AND">AND</option>
+                <option value="OR">OR</option>
+            </select>
+
+            <select name="query_column" id="query_column">
+                {% for option in options %}
+                <option value={{option[0]}} SELECTED>{{option[1]}}</option>"
+                {% endfor %}
+            </select>
+
+            <select name="query_operator" id="query_operator">
+                <option value="like">Like</option>
+                <option value="==">=</option>
+                <option value="!=">!=</option>
+                <option value="<"><</option>
+                <option value="<=>"><=</option>
+                <option value=">=">>=</option>
+                <option value=">">></option>
+            </select>
+
+            <input type="text" name="query_value" id="query_value">
+            <input type="submit" value="Search">
+        </form>
+    </div>
+</center>
+
+<table class="table">
+    <tr class="table__header">
+        {% for header in headings %}
+        <th class="table__cell">{{header}}</th>
+        {% endfor %}
+    </tr>
+    
+    {% for row in data %}
+    <tr class="table__row">
+        {% for cell in row %}
+        <td class="table__cell">{{cell}}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+
+</table>
+{% endblock %}

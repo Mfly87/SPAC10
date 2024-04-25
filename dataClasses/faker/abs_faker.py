@@ -14,7 +14,7 @@ class AbsFaker(abc.ABC):
         _index = self.generate_int(0, _len - 1)
         return item_list[_index]
 
-    def generate_float(self, min :float, max: float) -> int:
+    def generate_float(self, /, min :float = 0, max: float = 1) -> int:
         '''min and max are inclusive'''
         return self._faker.pyfloat(min_value = min, max_value = max)
     
